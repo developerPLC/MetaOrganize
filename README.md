@@ -9,7 +9,7 @@
 
 ./MetaOrganize -dir ( JSON file directory ) 
 
-./MetaOrganize -dir ( JSON file directory ) -images ( Directory for Images to include in HTML output ) -imageext ( extension of images )
+./MetaOrganize -dir ( JSON file directory ) -images ( Directory for PNG images to include in HTML output ) -imageext ( extension of images )
 
 ---
 
