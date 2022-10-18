@@ -202,7 +202,7 @@ func main() {
 		}
 
 		// calculate raritya
-		fmt.Printf("[ rarity ] %d - %d\n", len(v.Ids), len(totalTokens))
+		//fmt.Printf("[ rarity ] %d - %d\n", len(v.Ids), len(totalTokens))
 		rarity := (float64(len(v.Ids)) / float64(len(totalTokens))) * 1000
 		rarity = math.Round(rarity) / 10
 
