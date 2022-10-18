@@ -17,13 +17,11 @@ type Trait struct {
 }
 
 type MetaData struct {
-	Name        string `json:"name"`
-	ExternalUrl string `json:"external_url"`
-
-	Image      string  `json:"image"`
-	Attributes []Trait `json:"attributes"`
-
-	Description string `json:"description"`
+	Name        string  `json:"name"`
+	ExternalUrl string  `json:"external_url"`
+	Image       string  `json:"image"`
+	Attributes  []Trait `json:"attributes"`
+	Description string  `json:"description"`
 }
 
 type CountStruct struct {

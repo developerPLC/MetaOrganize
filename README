@@ -1,0 +1,12 @@
+### MetaOrganize
+
+Helping NFT creators
+
+# Usage 
+
+./MetaOrganize -dir ( JSON file directory ) -suffix ( metadata files extension )
+
+# Output 
+
+output.csv 
+
