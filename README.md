@@ -9,7 +9,7 @@
 
 ./MetaOrganize -dir example/metadata -images example/images
 
-./MetaOrganize -dir ( JSON file directory ) -images ( Directory for PNG images to include in HTML output ) 
+./MetaOrganize -dir ( JSON file directory ) -images ( Directory for images to include in HTML output ) 
 
 ---
 
