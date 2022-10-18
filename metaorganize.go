@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/fs"
 	"io/ioutil"
 	"log"
 	"os"
@@ -42,7 +43,6 @@ type MainCounts struct {
 
 var dir string
 var imageDir string = ""
-var imageExt string = ""
 
 func PrintUsage() {
 	fmt.Printf("[ Usage ]\n")
@@ -56,7 +56,6 @@ func main() {
 	fmt.Printf("[ https://github.com/developerPLC/MetaOrganize ]\n")
 	flag.StringVar(&dir, "dir", "", "Directory of metadata ( ex example/metadata )")
 	flag.StringVar(&imageDir, "images", "", "Directory of images ( ex example/images )")
-	flag.StringVar(&imageExt, "imageext", "", "Extension of Images (ex .png )")
 	flag.Parse()
 
 	if dir == "" {
@@ -213,6 +212,12 @@ func main() {
 	w := csv.NewWriter(f)
 	defer w.Flush()
 
+	// Create image name array
+	imageFiles, err := ioutil.ReadDir(imageDir)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	var HtmlBody string
 	for _, record := range records {
 		// Check if token record
@@ -220,12 +225,22 @@ func main() {
 
 		if isRec {
 			fmt.Printf("[ record ] %v\n", record)
-
 			var recordData string = ""
 
 			// Check if image flag is null & grab image of token
 			if imageDir != "" {
-				imageToOpen := fmt.Sprintf("%s/%d%s", imageDir, tokenId, imageExt)
+				// determine images & if extension
+				tokenIdStr := fmt.Sprintf("%d", tokenId)
+				imageToOpenFn, imageToOpenExt := GetImageFileName(&imageFiles, tokenIdStr)
+
+				var imageToOpen string
+				if imageToOpenExt == "" {
+					// No Extension
+					imageToOpen = fmt.Sprintf("%s/%s", imageDir, imageToOpenFn)
+				} else {
+					// Extension
+					imageToOpen = fmt.Sprintf("%s/%s.%s", imageDir, imageToOpenFn, imageToOpenExt)
+				}
 
 				// attempt to open files
 				f, err := os.Open(imageToOpen)
@@ -240,7 +255,12 @@ func main() {
 				content, _ := ioutil.ReadAll(reader)
 				encoded := base64.StdEncoding.EncodeToString(content)
 
-				recordData = fmt.Sprintf("<div><img class='square' src='data:image/png;base64,%s' /></div>", encoded)
+				// If Image Extension
+				if imageToOpenExt != "" {
+					recordData = fmt.Sprintf("<div><img class='square' src='data:image/%s;base64,%s' /></div>", imageToOpenExt, encoded)
+				} else {
+					recordData = fmt.Sprintf("<div><img class='square' src='data:image/png;base64,%s' /></div>", encoded)
+				}
 			}
 
 			for x := 0; x < len(record); x++ {
@@ -271,6 +291,23 @@ func IsTokenRecord(rec []string) (int64, bool) {
 		}
 	}
 	return parsed, false
+}
+
+func GetImageFileName(images *[]fs.FileInfo, id string) (string, string) {
+	ImageNameRegex, _ := regexp.Compile(fmt.Sprintf("^%s((?:\\.gif|\\.svg|\\.png|))", id))
+	for _, file := range *images {
+		tokenId := ImageNameRegex.FindStringSubmatch(file.Name())
+		// Extension
+		if len(tokenId) > 0 {
+			if tokenId[1] != "" {
+				extOnly := strings.ReplaceAll(tokenId[1], ".", "")
+				return id, extOnly
+			} else {
+				return id, ""
+			}
+		}
+	}
+	return "", ""
 }
 
 // If Count Object Contains
