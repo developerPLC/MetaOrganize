@@ -46,15 +46,15 @@ var imageDir string = ""
 
 func PrintUsage() {
 	fmt.Printf("[ Usage ]\n")
-	fmt.Printf("\t MetaOrganize -dir { directory of JSON metadata }\n")
-	fmt.Printf("\t MetaOrganize -dir { directory of JSON metadata } -images { directory of images for HTML output }\n")
+	fmt.Printf("\t MetaOrganize -metadata { directory of JSON metadata }\n")
+	fmt.Printf("\t MetaOrganize -metadata { directory of JSON metadata } -images { directory of images for HTML output }\n")
 	os.Exit(1)
 }
 
 func main() {
 	fmt.Printf("[ MetaOrganize by PLC.eth ]\n")
 	fmt.Printf("[ https://github.com/developerPLC/MetaOrganize ]\n")
-	flag.StringVar(&dir, "dir", "", "Directory of metadata ( ex example/metadata )")
+	flag.StringVar(&dir, "metadata", "", "Directory of metadata ( ex example/metadata )")
 	flag.StringVar(&imageDir, "images", "", "Directory of images ( ex example/images )")
 	flag.Parse()
 
@@ -262,8 +262,23 @@ func main() {
 				}
 			}
 
+			// Add Record or li
+			addedUl := false
 			for x := 0; x < len(record); x++ {
-				recordData = fmt.Sprintf("%s<div>%s</div>", recordData, record[x])
+				if x < 4 {
+					recordData = fmt.Sprintf("%s<div>%s</div>", recordData, record[x])
+				} else {
+					if !addedUl {
+						recordData = fmt.Sprintf("%s<ul><li>%s</li>", recordData, record[x])
+						addedUl = true
+					} else {
+						if x == len(record) {
+							recordData = fmt.Sprintf("%s<li>%s</li></ul>", recordData, record[x])
+						} else {
+							recordData = fmt.Sprintf("%s<li>%s</li>", recordData, record[x])
+						}
+					}
+				}
 			}
 
 			ContentToAdd := `<div class='flexRow'>` + recordData + `</div>`
@@ -350,6 +365,10 @@ func GenHTMLTemplate() string {
 <html>
 		<head>
 			<style>
+				body, html {
+					font-family: sans-serif;
+				}
+
 				.square {
 					max-width: 200px;
 				}
@@ -365,8 +384,13 @@ func GenHTMLTemplate() string {
 					display: flex;
 					justify-content: space-around;
 					align-items: center;
-					margin-bottom: 10px;
+					margin: 15px;
 					box-shadow: 1px 2px 2px 2px #0003;
+				}
+
+				ul li {
+					padding: 10px;
+					border-bottom: 1px solid #0003;
 				}
 
 			</style>
@@ -374,6 +398,8 @@ func GenHTMLTemplate() string {
 		</head>
 		<body>
 			<div class="container">
+				<h1 style="text-align: center;">MetaOrganize by PLC.eth</h1>
+				<div style="text-align: center;"><a href="https://github.com/developerPLC/MetaOrganize" target="_blank">MetaOrganize GitHub</a></div>
 				{ GeneratedBody } 
 			</div>
 		</body>
