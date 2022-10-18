@@ -52,7 +52,8 @@ func PrintUsage() {
 }
 
 func main() {
-	fmt.Printf("[ meta organize by PLC.eth ]\n")
+	fmt.Printf("[ MetaOrganize by PLC.eth ]\n")
+	fmt.Printf("[ https://github.com/developerPLC/MetaOrganize ]\n")
 	flag.StringVar(&dir, "dir", "", "Directory of metadata ( ex example/metadata )")
 	flag.StringVar(&imageDir, "images", "", "Directory of images ( ex example/images )")
 	flag.StringVar(&imageExt, "imageext", "", "Extension of Images (ex .png )")
