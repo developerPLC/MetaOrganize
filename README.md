@@ -1,4 +1,4 @@
-## MetaOrganize by PLC.eth
+## MetaOrganize by PLC
 
 ---
 
