@@ -398,7 +398,7 @@ func GenHTMLTemplate() string {
 		</head>
 		<body>
 			<div class="container">
-				<h1 style="text-align: center;">MetaOrganize by PLC.eth</h1>
+				<h1 style="text-align: center;">MetaOrganize by PLC</h1>
 				<div style="text-align: center;"><a href="https://github.com/developerPLC/MetaOrganize" target="_blank">MetaOrganize GitHub</a></div>
 				{ GeneratedBody } 
 			</div>
