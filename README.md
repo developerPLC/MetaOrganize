@@ -14,3 +14,6 @@ Helping NFT creators organize their data.
 
 output.csv 
 
+# Example 
+
+![Output CSV](images/example.png)
