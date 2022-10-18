@@ -15,6 +15,7 @@ Helping NFT creators organize their data.
 ## Output 
 
 output.csv 
+
 output.html
 
 # Example 
