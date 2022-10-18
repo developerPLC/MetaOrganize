@@ -8,6 +8,8 @@ Helping NFT creators organize their data.
 
 ./MetaOrganize -dir ( JSON file directory ) 
 
+./MetaOrganize -dir ( JSON file directory ) -images ( Directory for Images to include in HTML output ) -imageext ( extension of images )
+
 ---
 
 ## Output 
