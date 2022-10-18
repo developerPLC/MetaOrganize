@@ -44,15 +44,22 @@ var dir string
 var imageDir string = ""
 var imageExt string = ""
 
+func PrintUsage() {
+	fmt.Printf("[ Usage ]\n")
+	fmt.Printf("\t MetaOrganize -dir { directory of JSON metadata }\n")
+	fmt.Printf("\t MetaOrganize -dir { directory of JSON metadata } -images { directory of images for HTML output }\n")
+	os.Exit(1)
+}
+
 func main() {
 	fmt.Printf("[ meta organize by PLC.eth ]\n")
-	flag.StringVar(&dir, "dir", "", "Directory of metadata")
-	flag.StringVar(&imageDir, "images", "", "Directory of images")
-	flag.StringVar(&imageExt, "imageext", "", "Extension of Images")
+	flag.StringVar(&dir, "dir", "", "Directory of metadata ( ex example/metadata )")
+	flag.StringVar(&imageDir, "images", "", "Directory of images ( ex example/images )")
+	flag.StringVar(&imageExt, "imageext", "", "Extension of Images (ex .png )")
 	flag.Parse()
 
 	if dir == "" {
-		fmt.Printf("[ usage ] metaorganize -dir { directory of metadata }")
+		PrintUsage()
 		os.Exit(1)
 	}
 
