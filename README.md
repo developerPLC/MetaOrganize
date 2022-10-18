@@ -1,8 +1,9 @@
-# MetaOrganize by PLC.eth
-
-Helping NFT creators organize their data.
+## MetaOrganize by PLC.eth
 
 ---
+
+##### Helping NFT creators organize their data.
+
 
 ## Usage 
 
