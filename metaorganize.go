@@ -36,12 +36,10 @@ type MainCounts struct {
 }
 
 var dir string
-var metasuffix string
 
 func main() {
 	fmt.Printf("[ meta organize by PLC.eth ]\n")
 	flag.StringVar(&dir, "dir", "", "Directory of metadata")
-	flag.StringVar(&metasuffix, "suffix", "", "Suffix of Metadata Files ( ex .json )")
 	flag.Parse()
 
 	if dir == "" {
@@ -67,10 +65,17 @@ func main() {
 	CountMap := MainCounts{}
 
 	// Loop Each Metadata file
-	for i := 0; i < len(files); i++ {
-		curDataFile, err := os.Open(fmt.Sprintf("%s/%d%s", dir, i, metasuffix))
+	for i, file := range files {
+		if file.IsDir() {
+			continue
+		}
+
+		fileToOpen := fmt.Sprintf("%s/%s", dir, file.Name())
+
+		// Open File
+		curDataFile, err := os.Open(fileToOpen)
 		if err != nil {
-			log.Printf("[ error ] could not open file.\t%s\n", fmt.Sprintf("%s/%d%s", dir, i, metasuffix))
+			log.Printf("[ error ] could not open file.\t%s\n", fileToOpen)
 			continue
 		}
 		defer curDataFile.Close()
@@ -78,7 +83,7 @@ func main() {
 		// Read all metadata
 		curDataFileBytes, err := ioutil.ReadAll(curDataFile)
 		if err != nil {
-			log.Fatalf("[ error ] could not read metadata file %d\n", i)
+			log.Fatalf("[ error ] could not read metadata file %s\n", fileToOpen)
 		}
 
 		// create new metadata object
@@ -134,7 +139,6 @@ func main() {
 
 	// Add Counts
 	for _, v := range CountMap.CountObjs {
-
 		var idString string = ""
 		for _, id := range v.Ids {
 			if idString == "" {
