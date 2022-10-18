@@ -179,6 +179,8 @@ func main() {
 		records = append(records, []string{})
 	}
 
+	records = append(records, []string{"Trait Type", "Trait Value", "Count", "Ids"})
+
 	// Add Counts
 	for _, v := range CountMap.CountObjs {
 		var idString string = ""
@@ -321,7 +323,8 @@ func GenHTMLTemplate() string {
 					display: flex;
 					justify-content: space-around;
 					align-items: center;
-					border-bottom: 1px solid #000;
+					margin-bottom: 10px;
+					box-shadow: 1px 2px 2px 2px #0003;
 				}
 
 			</style>
