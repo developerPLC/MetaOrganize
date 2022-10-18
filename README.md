@@ -7,9 +7,9 @@
 
 ## Usage 
 
-./MetaOrganize -metadata example/metadata -images example/images
+    ./MetaOrganize -metadata example/metadata -images example/images
 
-./MetaOrganize -metadata ( metadata directory ) -images ( Directory for images ) 
+    ./MetaOrganize -metadata ( metadata directory ) -images ( Directory for images ) 
 
 ---
 
