@@ -7,9 +7,9 @@
 
 ## Usage 
 
-./MetaOrganize -dir example/metadata -images example/images
+./MetaOrganize -metadata example/metadata -images example/images
 
-./MetaOrganize -dir ( JSON file directory ) -images ( Directory for images to include in HTML output ) 
+./MetaOrganize -metadata ( metadata directory ) -images ( Directory for images ) 
 
 ---
 
