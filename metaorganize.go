@@ -394,7 +394,7 @@ func GenHTMLTemplate() string {
 				}
 
 			</style>
-			<title>MetaOrganize by PLC.eth</title>
+			<title>MetaOrganize by PLC</title>
 		</head>
 		<body>
 			<div class="container">
