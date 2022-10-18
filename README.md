@@ -17,3 +17,4 @@ output.csv
 # Example 
 
 ![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/images/example.png)
+![Output HTML](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/images/htmlOutput.png)
