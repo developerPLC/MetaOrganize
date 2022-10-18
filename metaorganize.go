@@ -212,10 +212,7 @@ func main() {
 	defer w.Flush()
 
 	// Create image name array
-	imageFiles, err := ioutil.ReadDir(imageDir)
-	if err != nil {
-		log.Fatal(err)
-	}
+	imageFiles, _ := ioutil.ReadDir(imageDir)
 
 	var HtmlBody string
 	for _, record := range records {
