@@ -100,6 +100,7 @@ func main() {
 	})
 
 	// Loop Each Metadata file
+	totalTokens := [][]string{}
 	for _, file := range files {
 		if file.IsDir() {
 			continue
@@ -142,6 +143,8 @@ func main() {
 			md.Image,
 			md.ExternalUrl,
 		}
+
+		totalTokens = append(totalTokens, newRec)
 
 		for _, attr := range md.Attributes {
 			traitTypeString := fmt.Sprintf("%v", attr.TraitType)
@@ -198,8 +201,9 @@ func main() {
 			}
 		}
 
-		// calculate rarity
-		rarity := (float64(len(v.Ids)) / float64(len(records))) * 1000
+		// calculate raritya
+		fmt.Printf("[ rarity ] %d - %d\n", len(v.Ids), len(totalTokens))
+		rarity := (float64(len(v.Ids)) / float64(len(totalTokens))) * 1000
 		rarity = math.Round(rarity) / 10
 
 		CountMap.CountObjs[i].Rarity = rarity

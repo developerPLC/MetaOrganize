@@ -11,7 +11,7 @@
 ## CSV Output
 output.csv 
 
-![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/exampleCSV.png)
+![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/CSV.png)
 
 
 ### HTML Output 
