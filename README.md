@@ -13,13 +13,14 @@
 
 ---
 
-## Output 
 
+## CSV Output
 output.csv 
 
+![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/example.png)
+
+
+### HTML Output 
 output.html
 
-# Example 
-
-![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/example.png)
 ![Output HTML](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/HTML.png)
