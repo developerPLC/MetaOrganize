@@ -29,7 +29,7 @@ type CountStruct struct {
 	TraitType  string
 	TraitValue string
 	Count      int
-	Ids        []int
+	Ids        []string
 }
 
 type MainCounts struct {
@@ -68,7 +68,7 @@ func main() {
 	idRegex, _ := regexp.Compile("([0-9]+)")
 
 	// Loop Each Metadata file
-	for i, file := range files {
+	for _, file := range files {
 		if file.IsDir() {
 			continue
 		}
@@ -121,14 +121,14 @@ func main() {
 			if CountContains(CountMap.CountObjs, traitTypeString, traitValString) {
 				// Already there
 				CountMap.UpCount(traitTypeString, traitValString)
-				CountMap.AddId(traitTypeString, traitValString, i)
+				CountMap.AddId(traitTypeString, traitValString, matchedId)
 			} else {
 				// Add to array
 				newObj := CountStruct{
 					TraitType:  traitTypeString,
 					TraitValue: traitValString,
 					Count:      1,
-					Ids:        []int{i},
+					Ids:        []string{matchedId},
 				}
 
 				CountMap.CountObjs = append(CountMap.CountObjs, newObj)
@@ -206,7 +206,7 @@ func (ms *MainCounts) UpCount(traitType string, traitValue string) {
 }
 
 // Add ID To Array
-func (ms *MainCounts) AddId(traitType string, traitValue string, id int) {
+func (ms *MainCounts) AddId(traitType string, traitValue string, id string) {
 	for i, a := range ms.CountObjs {
 		if a.TraitType == traitType && a.TraitValue == traitValue {
 			ms.CountObjs[i].Ids = append(ms.CountObjs[i].Ids, id)
