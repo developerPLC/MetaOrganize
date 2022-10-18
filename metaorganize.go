@@ -153,9 +153,9 @@ func main() {
 		var idString string = ""
 		for _, id := range v.Ids {
 			if idString == "" {
-				idString = fmt.Sprintf("%d", id)
+				idString = fmt.Sprintf("%s", id)
 			} else {
-				idString = fmt.Sprintf("%s,%d", idString, id)
+				idString = fmt.Sprintf("%s,%s", idString, id)
 			}
 		}
 

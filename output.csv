@@ -12,9 +12,9 @@ id,name,image,external_url
 
 
 
-Background,Yellow,1,9
-Character,Square,2,"0,4"
-Background,Blue,3,"0,7,8"
-Character,Circle,3,"3,6,8"
-Character,Box,5,"1,2,5,7,9"
-Background,Green,6,"1,2,3,4,5,6"
+Background,Yellow,1,%!d(string=9)
+Character,Square,2,"%!d(string=1),%!d(string=4)"
+Background,Blue,3,"%!d(string=1),%!d(string=7),%!d(string=8)"
+Character,Circle,3,"%!d(string=3),%!d(string=6),%!d(string=8)"
+Character,Box,5,"%!d(string=10),%!d(string=2),%!d(string=5),%!d(string=7),%!d(string=9)"
+Background,Green,6,"%!d(string=10),%!d(string=2),%!d(string=3),%!d(string=4),%!d(string=5),%!d(string=6)"
