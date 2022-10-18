@@ -1,12 +1,16 @@
-### MetaOrganize
+# MetaOrganize by PLC.eth
 
-Helping NFT creators
+Helping NFT creators organize their data.
 
-# Usage 
+---
+
+## Usage 
 
 ./MetaOrganize -dir ( JSON file directory ) -suffix ( metadata files extension )
 
-# Output 
+---
+
+## Output 
 
 output.csv 
 
