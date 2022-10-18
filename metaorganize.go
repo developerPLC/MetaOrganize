@@ -180,6 +180,7 @@ func main() {
 	records = append(records, []string{"Trait Type", "Trait Value", "Count", "Ids"})
 
 	// Add Counts
+	var countHtmlObj [][]string
 	for _, v := range CountMap.CountObjs {
 		var idString string = ""
 		for _, id := range v.Ids {
@@ -196,7 +197,16 @@ func main() {
 			fmt.Sprintf("%d", v.Count),
 			idString,
 		}
+
+		countHtmlObj = append(countHtmlObj, newMap)
 		records = append(records, newMap)
+	}
+
+	var HtmlBody string = "<div class='countLine pt20'><div><b>Trait Type</b></div><div><b>Trait Value</b></div><div><b>Count</b></div></div>"
+	// Start Adding Counter Objects to Body
+	for _, obj := range CountMap.CountObjs {
+		newCount := fmt.Sprintf("<div class='countLine'><div>%s</div><div>%s</div><div>%d</div></div>", obj.TraitType, obj.TraitValue, obj.Count)
+		HtmlBody = fmt.Sprintf("%s\n%s", HtmlBody, newCount)
 	}
 
 	// SAVE CSV RECORDS
@@ -214,7 +224,6 @@ func main() {
 	// Create image name array
 	imageFiles, _ := ioutil.ReadDir(imageDir)
 
-	var HtmlBody string
 	for _, record := range records {
 		// Check if token record
 		tokenId, isRec := IsTokenRecord(record)
@@ -278,8 +287,8 @@ func main() {
 				}
 			}
 
-			ContentToAdd := `<div class='flexRow'>` + recordData + `</div>`
 			// Add to HTML Template
+			ContentToAdd := `<div class='flexRow'>` + recordData + `</div>`
 			HtmlBody = fmt.Sprintf("%s\n%s", HtmlBody, ContentToAdd)
 		}
 
@@ -376,6 +385,10 @@ func GenHTMLTemplate() string {
 					align-items: space-around;
 				}
 
+				.pt20 {
+					padding-top: 20px;
+				}
+
 				.flexRow {
 					padding: 10px;
 					display: flex;
@@ -383,6 +396,13 @@ func GenHTMLTemplate() string {
 					align-items: center;
 					margin: 15px;
 					box-shadow: 1px 2px 2px 2px #0003;
+				}
+
+				.countLine {
+					display: flex;
+					font-size: 0.8em;
+					justify-content: space-around;
+					align-items: center;
 				}
 
 				ul li {
