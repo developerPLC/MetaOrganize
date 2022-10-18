@@ -167,9 +167,14 @@ func main() {
 		records = append(records, newRec)
 	}
 
-	// Sort
+	// Sort by Count
 	sort.Slice(CountMap.CountObjs, func(i, j int) bool {
 		return CountMap.CountObjs[i].Count < CountMap.CountObjs[j].Count
+	})
+
+	// Sort by Trait Type
+	sort.Slice(CountMap.CountObjs, func(i, j int) bool {
+		return CountMap.CountObjs[i].TraitType < CountMap.CountObjs[j].TraitType
 	})
 
 	// Spacing
@@ -403,6 +408,7 @@ func GenHTMLTemplate() string {
 					font-size: 0.8em;
 					justify-content: space-around;
 					align-items: center;
+					padding: 2px;
 				}
 
 				ul li {
