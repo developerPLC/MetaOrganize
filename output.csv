@@ -1,0 +1,20 @@
+id,name,image,external_url
+1,Token 1,image1,,Background - Blue,Character - Square
+10,Token 10,image10,,Background - Green,Character - Box
+2,Token 2,image2,,Background - Green,Character - Box
+3,Token 3,image3,,Background - Green,Character - Circle
+4,Token 4,image4,,Background - Green,Character - Square
+5,Token 5,image5,,Background - Green,Character - Box
+6,Token 6,image6,,Background - Green,Character - Circle
+7,Token 7,image7,,Background - Blue,Character - Box
+8,Token 8,image8,,Background - Blue,Character - Circle
+9,Token 9,image9,,Background - Yellow,Character - Box
+
+
+
+Background,Yellow,1,9
+Character,Square,2,"0,4"
+Background,Blue,3,"0,7,8"
+Character,Circle,3,"3,6,8"
+Character,Box,5,"1,2,5,7,9"
+Background,Green,6,"1,2,3,4,5,6"
