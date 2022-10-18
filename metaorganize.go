@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"regexp"
 	"sort"
 )
 
@@ -64,6 +65,8 @@ func main() {
 
 	CountMap := MainCounts{}
 
+	idRegex, _ := regexp.Compile("([0-9]+)")
+
 	// Loop Each Metadata file
 	for i, file := range files {
 		if file.IsDir() {
@@ -71,6 +74,7 @@ func main() {
 		}
 
 		fileToOpen := fmt.Sprintf("%s/%s", dir, file.Name())
+		fmt.Printf("%s\n", fileToOpen)
 
 		// Open File
 		curDataFile, err := os.Open(fileToOpen)
@@ -93,9 +97,16 @@ func main() {
 			log.Fatalf("[ incorrect metadata ] %+v\n", err)
 		}
 
+		// Get token id from name
+		matchedId := idRegex.FindString(fileToOpen)
+		if matchedId == "" {
+			fmt.Printf("[ unable to determine token id ] %s\n", fileToOpen)
+			continue
+		}
+
 		// add record
 		newRec := []string{
-			fmt.Sprintf("%d", i),
+			matchedId,
 			md.Name,
 			md.Image,
 			md.ExternalUrl,
