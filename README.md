@@ -17,4 +17,4 @@ output.csv
 ### HTML Output 
 output.html
 
-![Output HTML](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/exampleHTML.png)
+![Output HTML](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/HTML.png)

@@ -10,6 +10,7 @@ import (
 	"io/fs"
 	"io/ioutil"
 	"log"
+	"math"
 	"os"
 	"regexp"
 	"sort"
@@ -35,6 +36,7 @@ type CountStruct struct {
 	TraitValue string
 	Count      int
 	Ids        []string
+	Rarity     float64
 }
 
 type MainCounts struct {
@@ -182,11 +184,11 @@ func main() {
 		records = append(records, []string{})
 	}
 
-	records = append(records, []string{"Trait Type", "Trait Value", "Count", "Ids"})
+	records = append(records, []string{"Trait Type", "Trait Value", "Count", "Rarity", "Ids"})
 
 	// Add Counts
 	var countHtmlObj [][]string
-	for _, v := range CountMap.CountObjs {
+	for i, v := range CountMap.CountObjs {
 		var idString string = ""
 		for _, id := range v.Ids {
 			if idString == "" {
@@ -196,10 +198,17 @@ func main() {
 			}
 		}
 
+		// calculate rarity
+		rarity := (float64(len(v.Ids)) / float64(len(records))) * 1000
+		rarity = math.Round(rarity) / 10
+
+		CountMap.CountObjs[i].Rarity = rarity
+
 		newMap := []string{
 			v.TraitType,
 			v.TraitValue,
 			fmt.Sprintf("%d", v.Count),
+			fmt.Sprintf("%0.2f%%", rarity),
 			idString,
 		}
 
@@ -207,10 +216,10 @@ func main() {
 		records = append(records, newMap)
 	}
 
-	var HtmlBody string = "<div class='countLine pt20'><div><b>Trait Type</b></div><div><b>Trait Value</b></div><div><b>Count</b></div></div>"
+	var HtmlBody string = "<div class='countLine pt20'><div><b>Trait Type</b></div><div><b>Trait Value</b></div><div><b>Count</b></div><div><b>Rarity</b></div></div>"
 	// Start Adding Counter Objects to Body
 	for _, obj := range CountMap.CountObjs {
-		newCount := fmt.Sprintf("<div class='countLine'><div>%s</div><div>%s</div><div>%d</div></div>", obj.TraitType, obj.TraitValue, obj.Count)
+		newCount := fmt.Sprintf("<div class='countLine'><div>%s</div><div>%s</div><div>%d</div><div>%0.2f %%</div></div>", obj.TraitType, obj.TraitValue, obj.Count, obj.Rarity)
 		HtmlBody = fmt.Sprintf("%s\n%s", HtmlBody, newCount)
 	}
 
