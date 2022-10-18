@@ -21,5 +21,5 @@ output.html
 
 # Example 
 
-![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/images/example.png)
-![Output HTML](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/images/htmlOutput.png)
+![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/example.png)
+![Output HTML](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/screenshots/htmlOutput.png)

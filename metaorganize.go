@@ -79,7 +79,6 @@ func main() {
 	}
 
 	CountMap := MainCounts{}
-
 	idRegex, _ := regexp.Compile("([0-9]+)")
 
 	// Sort files by token #
@@ -278,21 +277,27 @@ func main() {
 	}
 
 	htmlStr := strings.Replace(GenHTMLTemplate(), ReplacementString, HtmlBody, 1)
-	ioutil.WriteFile("output.html", []byte(htmlStr), 0755)
+
+	fmt.Printf("[ saving output.html ]\n")
+	err = ioutil.WriteFile("output.html", []byte(htmlStr), 0755)
+	if err != nil {
+		log.Fatalf("[ error ] unable to write file output.html\n")
+	}
 }
 
+// Reading CSV is token record
 func IsTokenRecord(rec []string) (int64, bool) {
 	var parsed int64
 	if len(rec) > 0 {
 		parsed, err := strconv.ParseInt(rec[0], 10, 32)
 		if err == nil {
-			//fmt.Printf("[ true ] %+v\n", parsed)
 			return parsed, true
 		}
 	}
 	return parsed, false
 }
 
+// Get Filename & Extension of image
 func GetImageFileName(images *[]fs.FileInfo, id string) (string, string) {
 	ImageNameRegex, _ := regexp.Compile(fmt.Sprintf("^%s((?:\\.gif|\\.svg|\\.png|))", id))
 	for _, file := range *images {
@@ -373,6 +378,5 @@ func GenHTMLTemplate() string {
 			</div>
 		</body>
 </html>
-
 	`)
 }
