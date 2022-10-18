@@ -16,4 +16,4 @@ output.csv
 
 # Example 
 
-![Output CSV](images/example.png)
+![Output CSV](https://raw.githubusercontent.com/developerPLC/MetaOrganize/main/images/example.png)

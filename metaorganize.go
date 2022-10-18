@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"encoding/base64"
 	"encoding/csv"
 	"encoding/json"
 	"flag"
@@ -10,6 +12,8 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strconv"
+	"strings"
 )
 
 type Trait struct {
@@ -37,10 +41,14 @@ type MainCounts struct {
 }
 
 var dir string
+var imageDir string = ""
+var imageExt string = ""
 
 func main() {
 	fmt.Printf("[ meta organize by PLC.eth ]\n")
 	flag.StringVar(&dir, "dir", "", "Directory of metadata")
+	flag.StringVar(&imageDir, "images", "", "Directory of images")
+	flag.StringVar(&imageExt, "imageext", "", "Extension of Images")
 	flag.Parse()
 
 	if dir == "" {
@@ -67,6 +75,22 @@ func main() {
 
 	idRegex, _ := regexp.Compile("([0-9]+)")
 
+	// Sort files by token #
+	sort.Slice(files, func(i, j int) bool {
+		matchedIda := idRegex.FindString(files[i].Name())
+		matchedIdb := idRegex.FindString(files[j].Name())
+		a, err := strconv.ParseInt(matchedIda, 10, 32)
+		if err != nil {
+			log.Fatalf("[ error ] %+v\n", err)
+		}
+		b, err := strconv.ParseInt(matchedIdb, 10, 32)
+		if err != nil {
+			log.Fatalf("[ error ] %+v\n", err)
+		}
+
+		return a < b
+	})
+
 	// Loop Each Metadata file
 	for _, file := range files {
 		if file.IsDir() {
@@ -74,7 +98,13 @@ func main() {
 		}
 
 		fileToOpen := fmt.Sprintf("%s/%s", dir, file.Name())
-		fmt.Printf("%s\n", fileToOpen)
+
+		// Get token id from name
+		matchedId := idRegex.FindString(fileToOpen)
+		if matchedId == "" {
+			fmt.Printf("[ unable to determine token id ] %s\n", fileToOpen)
+			continue
+		}
 
 		// Open File
 		curDataFile, err := os.Open(fileToOpen)
@@ -95,13 +125,6 @@ func main() {
 		err = json.Unmarshal(curDataFileBytes, &md)
 		if err != nil {
 			log.Fatalf("[ incorrect metadata ] %+v\n", err)
-		}
-
-		// Get token id from name
-		matchedId := idRegex.FindString(fileToOpen)
-		if matchedId == "" {
-			fmt.Printf("[ unable to determine token id ] %s\n", fileToOpen)
-			continue
 		}
 
 		// add record
@@ -179,11 +202,65 @@ func main() {
 	// Write CSV
 	w := csv.NewWriter(f)
 	defer w.Flush()
+
+	var HtmlBody string
 	for _, record := range records {
+		// Check if token record
+		tokenId, isRec := IsTokenRecord(record)
+
+		if isRec {
+			fmt.Printf("[ record ] %v\n", record)
+
+			var recordData string = ""
+
+			// Check if image flag is null & grab image of token
+			if imageDir != "" {
+				imageToOpen := fmt.Sprintf("%s/%d%s", imageDir, tokenId, imageExt)
+
+				// attempt to open files
+				f, err := os.Open(imageToOpen)
+				if err != nil {
+					log.Printf("[ error opening image ] %s\n", imageToOpen)
+					break
+				}
+				defer f.Close()
+
+				// Read entire Image into byte slice.
+				reader := bufio.NewReader(f)
+				content, _ := ioutil.ReadAll(reader)
+				encoded := base64.StdEncoding.EncodeToString(content)
+
+				recordData = fmt.Sprintf("<div><img class='square' src='data:image/png;base64,%s' /></div>", encoded)
+			}
+
+			for x := 0; x < len(record); x++ {
+				recordData = fmt.Sprintf("%s<div>%s</div>", recordData, record[x])
+			}
+
+			ContentToAdd := `<div class='flexRow'>` + recordData + `</div>`
+			// Add to HTML Template
+			HtmlBody = fmt.Sprintf("%s\n%s", HtmlBody, ContentToAdd)
+		}
+
 		if err := w.Write(record); err != nil {
 			log.Fatalln("error writing record to file", err)
 		}
 	}
+
+	htmlStr := strings.Replace(GenHTMLTemplate(), ReplacementString, HtmlBody, 1)
+	ioutil.WriteFile("output.html", []byte(htmlStr), 0755)
+}
+
+func IsTokenRecord(rec []string) (int64, bool) {
+	var parsed int64
+	if len(rec) > 0 {
+		parsed, err := strconv.ParseInt(rec[0], 10, 32)
+		if err == nil {
+			//fmt.Printf("[ true ] %+v\n", parsed)
+			return parsed, true
+		}
+	}
+	return parsed, false
 }
 
 // If Count Object Contains
@@ -212,4 +289,42 @@ func (ms *MainCounts) AddId(traitType string, traitValue string, id string) {
 			ms.CountObjs[i].Ids = append(ms.CountObjs[i].Ids, id)
 		}
 	}
+}
+
+const ReplacementString = `{ GeneratedBody }`
+
+func GenHTMLTemplate() string {
+	return (`
+<html>
+		<head>
+			<style>
+				.square {
+					max-width: 200px;
+				}
+
+				.container {
+					display: flex;
+					flex-direction: column;
+					align-items: space-around;
+				}
+
+				.flexRow {
+					padding: 10px;
+					display: flex;
+					justify-content: space-around;
+					align-items: center;
+					border-bottom: 1px solid #000;
+				}
+
+			</style>
+			<title>MetaOrganize by PLC.eth</title>
+		</head>
+		<body>
+			<div class="container">
+				{ GeneratedBody } 
+			</div>
+		</body>
+</html>
+
+	`)
 }

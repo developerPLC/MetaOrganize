@@ -1,20 +1,113 @@
 id,name,image,external_url
-1,Token 1,image1,,Background - Blue,Character - Square
-10,Token 10,image10,,Background - Green,Character - Box
-2,Token 2,image2,,Background - Green,Character - Box
-3,Token 3,image3,,Background - Green,Character - Circle
-4,Token 4,image4,,Background - Green,Character - Square
-5,Token 5,image5,,Background - Green,Character - Box
-6,Token 6,image6,,Background - Green,Character - Circle
-7,Token 7,image7,,Background - Blue,Character - Box
-8,Token 8,image8,,Background - Blue,Character - Circle
-9,Token 9,image9,,Background - Yellow,Character - Box
+1,XNFT token 1,,,Character - Rawr,Object - None
+2,XNFT token 2,,,Character - None,Object - Square
+3,XNFT token 3,,,Character - Two,Object - None
+4,XNFT token 4,,,Character - None,Object - Square
+5,XNFT token 5,,,Character - Rawr,Object - Square
+6,XNFT token 6,,,Character - Duo,Object - Circle
+7,XNFT token 7,,,Character - Red,Object - Circle
+8,XNFT token 8,,,Character - Red,Object - None
+9,XNFT token 9,,,Character - None,Object - Circle
+10,XNFT token 10,,,Character - Rawr,Object - None
+11,XNFT token 11,,,Character - Duo,Object - Circle
+12,XNFT token 12,,,Character - One,Object - Circle
+13,XNFT token 13,,,Character - Duo,Object - None
+14,XNFT token 14,,,Character - Duo,Object - Square
+15,XNFT token 15,,,Character - One,Object - Circle
+16,XNFT token 16,,,Character - Duo,Object - None
+17,XNFT token 17,,,Character - One,Object - Square
+18,XNFT token 18,,,Character - Duo,Object - None
+19,XNFT token 19,,,Character - Red,Object - None
+20,XNFT token 20,,,Character - None,Object - Square
+21,XNFT token 21,,,Character - Two,Object - Circle
+22,XNFT token 22,,,Character - One,Object - None
+23,XNFT token 23,,,Character - Two,Object - Square
+24,XNFT token 24,,,Character - One,Object - Square
+25,XNFT token 25,,,Character - Rawr,Object - Circle
+26,XNFT token 26,,,Character - Rawr,Object - Square
+27,XNFT token 27,,,Character - Two,Object - Square
+28,XNFT token 28,,,Character - Two,Object - None
+29,XNFT token 29,,,Character - None,Object - None
+30,XNFT token 30,,,Character - Red,Object - None
+31,XNFT token 31,,,Character - Duo,Object - Circle
+32,XNFT token 32,,,Character - Two,Object - None
+33,XNFT token 33,,,Character - Red,Object - None
+34,XNFT token 34,,,Character - Duo,Object - None
+35,XNFT token 35,,,Character - Two,Object - Circle
+36,XNFT token 36,,,Character - Duo,Object - None
+37,XNFT token 37,,,Character - Red,Object - None
+38,XNFT token 38,,,Character - Rawr,Object - None
+39,XNFT token 39,,,Character - Duo,Object - None
+40,XNFT token 40,,,Character - Rawr,Object - None
+41,XNFT token 41,,,Character - Red,Object - None
+42,XNFT token 42,,,Character - Two,Object - None
+43,XNFT token 43,,,Character - Two,Object - None
+44,XNFT token 44,,,Character - Rawr,Object - None
+45,XNFT token 45,,,Character - Two,Object - None
+46,XNFT token 46,,,Character - Red,Object - None
+47,XNFT token 47,,,Character - Red,Object - None
+48,XNFT token 48,,,Character - Red,Object - None
+49,XNFT token 49,,,Character - Red,Object - None
+50,XNFT token 50,,,Character - Red,Object - None
+51,XNFT token 51,,,Character - Red,Object - None
+52,XNFT token 52,,,Character - Two,Object - None
+53,XNFT token 53,,,Character - Rawr,Object - None
+54,XNFT token 54,,,Character - Red,Object - None
+55,XNFT token 55,,,Character - Rawr,Object - None
+56,XNFT token 56,,,Character - Red,Object - None
+57,XNFT token 57,,,Character - Red,Object - None
+58,XNFT token 58,,,Character - Two,Object - None
+59,XNFT token 59,,,Character - Red,Object - None
+60,XNFT token 60,,,Character - Red,Object - None
+61,XNFT token 61,,,Character - Two,Object - None
+62,XNFT token 62,,,Character - Rawr,Object - None
+63,XNFT token 63,,,Character - Two,Object - None
+64,XNFT token 64,,,Character - Rawr,Object - None
+65,XNFT token 65,,,Character - Red,Object - None
+66,XNFT token 66,,,Character - Red,Object - None
+67,XNFT token 67,,,Character - Rawr,Object - None
+68,XNFT token 68,,,Character - Two,Object - None
+69,XNFT token 69,,,Character - Rawr,Object - None
+70,XNFT token 70,,,Character - Rawr,Object - None
+71,XNFT token 71,,,Character - Rawr,Object - None
+72,XNFT token 72,,,Character - Rawr,Object - None
+73,XNFT token 73,,,Character - Rawr,Object - None
+74,XNFT token 74,,,Character - Rawr,Object - None
+75,XNFT token 75,,,Character - Rawr,Object - None
+76,XNFT token 76,,,Character - Rawr,Object - None
+77,XNFT token 77,,,Character - Rawr,Object - None
+78,XNFT token 78,,,Character - Rawr,Object - None
+79,XNFT token 79,,,Character - Rawr,Object - None
+80,XNFT token 80,,,Character - Rawr,Object - None
+81,XNFT token 81,,,Character - Rawr,Object - None
+82,XNFT token 82,,,Character - Rawr,Object - None
+83,XNFT token 83,,,Character - Rawr,Object - None
+84,XNFT token 84,,,Character - Rawr,Object - None
+85,XNFT token 85,,,Character - Rawr,Object - None
+86,XNFT token 86,,,Character - Rawr,Object - None
+87,XNFT token 87,,,Character - Rawr,Object - None
+88,XNFT token 88,,,Character - Rawr,Object - None
+89,XNFT token 89,,,Character - Rawr,Object - None
+90,XNFT token 90,,,Character - Rawr,Object - None
+91,XNFT token 91,,,Character - Rawr,Object - None
+92,XNFT token 92,,,Character - Rawr,Object - None
+93,XNFT token 93,,,Character - Rawr,Object - None
+94,XNFT token 94,,,Character - Rawr,Object - None
+95,XNFT token 95,,,Character - Rawr,Object - None
+96,XNFT token 96,,,Character - Rawr,Object - None
+97,XNFT token 97,,,Character - Rawr,Object - None
+98,XNFT token 98,,,Character - Rawr,Object - None
+99,XNFT token 99,,,Character - Rawr,Object - None
+100,XNFT token 100,,,Character - Rawr,Object - None
 
 
 
-Background,Yellow,1,9
-Character,Square,2,"1,4"
-Background,Blue,3,"1,7,8"
-Character,Circle,3,"3,6,8"
-Character,Box,5,"10,2,5,7,9"
-Background,Green,6,"10,2,3,4,5,6"
+Character,None,5,"2,4,9,20,29"
+Character,One,5,"12,15,17,22,24"
+Object,Circle,10,"6,7,9,11,12,15,21,25,31,35"
+Object,Square,10,"2,4,5,14,17,20,23,24,26,27"
+Character,Duo,10,"6,11,13,14,16,18,31,34,36,39"
+Character,Two,15,"3,21,23,27,28,32,35,42,43,45,52,58,61,63,68"
+Character,Red,20,"7,8,19,30,33,37,41,46,47,48,49,50,51,54,56,57,59,60,65,66"
+Character,Rawr,45,"1,5,10,25,26,38,40,44,53,55,62,64,67,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100"
+Object,None,80,"1,3,8,10,13,16,18,19,22,28,29,30,32,33,34,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100"
